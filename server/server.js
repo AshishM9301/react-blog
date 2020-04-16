@@ -32,6 +32,13 @@ mongoose
 
 // Connect to mongo
 
+
+
+app.get('/', (req, res) => {
+  res.json({
+    "hello": "I am happily deployed"
+  })
+})
 //  Use Routes
 app.use('/api/items', items);
 app.use('/api/users', users);
