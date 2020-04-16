@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
 
 const items = require('./routes/api/items');
 const users = require('./routes/api/users');
@@ -10,23 +10,27 @@ const app = express();
 
 //Body Parser Miodddle Ware
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: true
-}))
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
 
 // Cookie Parser Middle Ware
-app.use(cookieParser())
+app.use(cookieParser());
 
 // DB Config
-const config = require('./config/keys')
+const config = require('./config/keys');
 
-mongoose.connect(config.mongoURI, {
+mongoose
+  .connect(config.mongoURI, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
-}).then(() => console.log("Mongo Db connected")).catch(err => console.log(err))
+  })
+  .then(() => console.log('Mongo Db connected'))
+  .catch((err) => console.log(err));
 
 // Connect to mongo
-
 
 //  Use Routes
 app.use('/api/items', items);
